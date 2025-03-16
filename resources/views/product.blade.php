@@ -267,6 +267,21 @@
 .scroll-btn.right {
     right: 0;
 }
+
+
+#sortBtn {
+    min-width: 100px;
+}
+/* 
+.dropdown-menu {
+    min-width: 150px;
+    text-align: left;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+    */
   </style>
 
   <script>
@@ -299,6 +314,29 @@ document.addEventListener("DOMContentLoaded", function () {
     checkButtons();
 });
 
+/* maybe can use for the sortBtn 
+
+document.addEventListener("DOMContentLoaded", function () {
+    let priceSortOrder = "desc"; 
+    let dateSortOrder = "desc";
+
+    document.getElementById("sortPrice").addEventListener("click", function () {
+        sortProducts("price", priceSortOrder);
+        priceSortOrder = priceSortOrder === "desc" ? "asc" : "desc"; 
+    });
+
+    document.getElementById("sortDate").addEventListener("click", function () {
+        sortProducts("date", dateSortOrder);
+        dateSortOrder = dateSortOrder === "desc" ? "asc" : "desc"; 
+    });
+
+    function sortProducts(type, order) {
+        console.log(`Sorting by ${type} in ${order} order`);
+      
+    }
+    
+});
+*/
   </script>
 </head>
 <body>
@@ -307,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
        <div class="product-nav-wrapper">
        <nav class="product-nav">
         <ul>
-            <li><a href="?brand=Samsung">Samsung</a></li>
+            <li><a href="{{ route('samsung') }}">Samsung</a></li>
             <li><a href="?brand=LG">LG</a></li>
             <li><a href="?brand=Sony">Sony</a></li>
             <li><a href="?brand=Panasonic">Panasonic</a></li>
@@ -326,7 +364,19 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="container text-center mt-5 py-5">
         <h3>Our Featured</h3>
         <hr class="mx-auto">
-        <p>Here you can check out our featured product</p>
+        <p class="mb-0">Here you can check out our featured product</p>
+   
+        <div class="dropdown" style="margin-left: 1100px;">
+            <button class="btn btn-outline-secondary d-flex align-items-center" id="sortBtn" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-sort me-2" style="margin-right: 15px;"></i> Sort
+            </button>
+            <!--
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="sortPrice">Sort by Price</a></li>
+                <li><a class="dropdown-item" href="#" id="sortDate">Sort by Date</a></li>
+            </ul>
+-->
+        </div>
     </div>
     <div class="row mx-auto container-fluid">
         <div class="product text-center col-lg-3 col-md-4 col-12">
@@ -389,7 +439,21 @@ document.addEventListener("DOMContentLoaded", function () {
         <h3>Kitchen Appliances</h3>
         <hr class="mx-auto">
         <p>Here you can check out some of the kitchen appliances</p>
+
+        <div class="dropdown" style="margin-left: 1100px;">
+            <button class="btn btn-outline-secondary d-flex align-items-center" id="sortBtn" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-sort me-2" style="margin-right: 15px;"></i> Sort
+            </button>
+            <!--
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="sortPrice">Sort by Price</a></li>
+                <li><a class="dropdown-item" href="#" id="sortDate">Sort by Date</a></li>
+            </ul>
+-->
+        </div>
     </div>
+
+
     <div class="row mx-auto container-fluid">
         <div class="product text-center col-lg-3 col-md-4 col-12">
             <img class="img-fluid mb-3" src="/pic/kitchen/panasonic.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
@@ -450,6 +514,17 @@ document.addEventListener("DOMContentLoaded", function () {
         <h3>Best Mobile</h3>
         <hr class="mx-auto">
         <p>Here you can check out our new released mobile phone</p>
+        <div class="dropdown" style="margin-left: 1100px;">
+            <button class="btn btn-outline-secondary d-flex align-items-center" id="sortBtn" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-sort me-2" style="margin-right: 15px;"></i> Sort
+            </button>
+            <!--
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="sortPrice">Sort by Price</a></li>
+                <li><a class="dropdown-item" href="#" id="sortDate">Sort by Date</a></li>
+            </ul>
+-->
+        </div>
     </div>
     <div class="row mx-auto container-fluid">
         <div class="product text-center col-lg-3 col-md-4 col-12">
