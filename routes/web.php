@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/product', [UserController::class, 'showProduct'])->name('product');
+Route::get('/product/samsung', [ProductController::class, 'showSamsung'])->name('samsung');
+Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
