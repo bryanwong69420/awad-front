@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/product', [UserController::class, 'showProduct'])->name('product');
+
+Route::get('/product/samsung', [ProductController::class, 'showSamsung'])->name('samsung');
+Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
+
+Route::get('/login', [UserController::class, 'showLogin'])->name('login');
+Route::get('/register', [UserController::class, 'showRegister'])->name('register');

@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
        <nav class="product-nav">
         <ul>
             <li><a href="{{ route('samsung') }}">Samsung</a></li>
-            <li><a href="?brand=LG">LG</a></li>
+            <li><a href="{{ route('lg') }}">LG</a></li>
             <li><a href="?brand=Sony">Sony</a></li>
             <li><a href="?brand=Panasonic">Panasonic</a></li>
             <li><a href="?category=TV">TV</a></li>
@@ -354,160 +354,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <li><a href="?category=Washing Machine">Washing Machine</a></li>
             <li><a href="?category=Washing Machine">Washing Machine</a></li>
             <li><a href="?category=Washing Machine">Washing Machine</a></li>
-            <li><a href="?category=Washing Machine">Washing Machine</a></li>
         </ul>
       </nav>
     </div>
 </div>
-
-<section id="featured">
-    <div class="container text-center mt-5 py-5">
-        <h3>Our Featured</h3>
-        <hr class="mx-auto">
-        <p class="mb-0">Here you can check out our featured product</p>
-   
-        <div class="dropdown" style="margin-left: 1100px;">
-            <button class="btn btn-outline-secondary d-flex align-items-center" id="sortBtn" data-bs-toggle="dropdown">
-                <i class="fa-solid fa-sort me-2" style="margin-right: 15px;"></i> Sort
-            </button>
-            <!--
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#" id="sortPrice">Sort by Price</a></li>
-                <li><a class="dropdown-item" href="#" id="sortDate">Sort by Date</a></li>
-            </ul>
--->
-        </div>
-    </div>
-    <div class="row mx-auto container-fluid">
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/featured/wash.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">LG 10KG Heat Pump Tumble Dryer Inverter</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/featured/vac.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Khind Vacuum Cleaner VC68P</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/featured/tv.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung 65 inch The Frame QLED 4K Smart Lifestyle TV (2022)</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/featured/pot.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Faber 1.5L Slow Cooker FBR-FSC150BK</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-    </div>
-</section>
-
-<section id="Kitchen Appliances" class="my-5">
-    <div class="container text-center mt-5 py-5">
-        <h3>Kitchen Appliances</h3>
-        <hr class="mx-auto">
-        <p>Here you can check out some of the kitchen appliances</p>
-
-        <div class="dropdown" style="margin-left: 1100px;">
-            <button class="btn btn-outline-secondary d-flex align-items-center" id="sortBtn" data-bs-toggle="dropdown">
-                <i class="fa-solid fa-sort me-2" style="margin-right: 15px;"></i> Sort
-            </button>
-            <!--
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#" id="sortPrice">Sort by Price</a></li>
-                <li><a class="dropdown-item" href="#" id="sortDate">Sort by Date</a></li>
-            </ul>
--->
-        </div>
-    </div>
-
-
-    <div class="row mx-auto container-fluid">
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/panasonic.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Panasonic Ultra Filtration Alkaline Ionizer</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/elba.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Elba 1.7L Jug Kettle</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/refri.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Elba 2 Door Fridge 250L</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/khino.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Khind Multi Blender Chopper</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-    </div>
 
 <section id="Mobile" class="my-5">
     <div class="container text-center mt-5 py-5">
@@ -581,6 +431,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>
 </section>
+
  @include('footer')
 </body>
 </html>
