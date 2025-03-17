@@ -14,10 +14,10 @@ class UserController extends Controller
 
     public function category(Request $req)
     {
-        $brand = $req->query('brand'); // 获取品牌参数
-        $category = $req->query('category'); // 获取类别参数
+        $brand = $req->query('brand'); 
+        $category = $req->query('category'); 
     
-        // 假设从数据库获取产品
+
         $products = Product::query();
     
         if ($brand) {
@@ -31,5 +31,15 @@ class UserController extends Controller
         $products = $products->get();
     
         return view('product', compact('products', 'brand', 'category'));
+    }
+
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    public function showRegister()
+    {
+        return view('register');
     }
 }
