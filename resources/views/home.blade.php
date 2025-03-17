@@ -338,6 +338,7 @@
     justify-content:center; 
     align-items: center;
     padding: 10px 0; 
+    gap: 50px;
 }
 
 .img-fluid {
@@ -393,7 +394,7 @@
 </section>
 
 <section id="brand" class="container">
-    <div class="logo-container" m-0 py-5>
+    <div class="logo-container">
         <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/lg.png" alt="">
         <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/haier.png" alt="">
         <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/midea.png" alt="">
@@ -429,8 +430,75 @@
     </div>
 </section>
 
-<section id="featured" class="my-5 py-5">
+<section id="newrelease" class="my-5 py-5">
     <div class="container text-center mt-5 py-5">
+        <h3>New Release</h3>
+        <hr class="mx-auto">
+        <p>Here you can check out some of the new release products</p>
+    </div>
+    <div class="row mx-auto container-fluid">
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="/pic/digital/pods.webp" alt="">
+            <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="p-name">Apple AirPods Pro (2nd generation) with MagSafe Charging Case (USB‑C)</h5>
+            <h4 class="p-name">$100.00</h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
+            <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="p-name">Apple Watch Series 9 Aluminum Case with Sport Band GPS + Cellular</h5>
+            <h4 class="p-name">$100.00</h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
+            <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="p-name">Samsung Galaxy Watch5 Pro 45mm</h5>
+            <h4 class="p-name">$100.00</h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="/pic/digital/buds.webp" alt="">
+            <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="p-name">Samsung Galaxy Buds2 Pro</h5>
+            <h4 class="p-name">$100.00</h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/newrelease" class="see-more-btn">
+            Show More <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<section id="featured" class="my-5 py-5">
+    <div class="container text-center">
         <h3>Our Featured</h3>
         <hr class="mx-auto">
         <p>Here you can check out our featured product</p>
@@ -493,14 +561,16 @@
 
 <section id="banner" class="my-5 py-5">
     <div class="banners">
-        <h4>MID SEASON SALE</h4>
-        <h1>Autumn Collection<br>Up to 20% OFF</h1>
-        <button class="transform">Shop Now</button>
+        <h1 style="padding: 0 0 20px 0">Better Product</h1>
+        <br>
+        <h1 style="padding:0 0 20px 70px">Better Tomorrow</h1>
+        <br>
+        <h1 style="padding: 0 0 0 200px">Better Future</h1>
     </div>
 </section>
 
-<section id="Kitchen Appliances" class="my-5">
-    <div class="container text-center mt-5 py-5">
+<section id="Kitchen Appliances" class="my-5 py-5">
+    <div class="container text-center">
         <h3>Kitchen Appliances</h3>
         <hr class="mx-auto">
         <p>Here you can check out some of the kitchen appliances</p>
@@ -566,8 +636,8 @@
     </div>
 </section>
 
-<section id="Mobile" class="my-5">
-    <div class="container text-center mt-5 py-5">
+<section id="Mobile" class="my-5 py-5">
+    <div class="container text-center">
         <h3>Best Mobile</h3>
         <hr class="mx-auto">
         <p>Here you can check out our new released mobile phone</p>
@@ -633,8 +703,8 @@
     </div>
 </section>
 
-<section id="Digital Gadget" class="my-5">
-    <div class="container text-center mt-5 py-5">
+<section id="Digital Gadget" class="my-5 py-5">
+    <div class="container text-center">
         <h3>Digital Gadget</h3>
         <hr class="mx-auto">
         <p>Here you can check out some of the digital gadget</p>
