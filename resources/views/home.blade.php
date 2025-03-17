@@ -250,7 +250,6 @@
         }
 
         #banner {
-            background-image: url("/pic/banner/banner.jpg");
             width: 100%;
             height: 60vh;
             background-size: cover;
@@ -263,12 +262,15 @@
             align-items: flex-start;
         }
 
-        #banner h4{
-            color: #d8d8d8;
+        #banner h1{
+            color:black;
+            margin-left: 100px;
         }
 
-        #banner h1{
-            color: #d8d8d8;
+        #banner h2{
+            padding-left: 1100px;
+            font-weight: bold;
+            
         }
 
         #banner button{
@@ -497,7 +499,7 @@
     </div>
 </section>
 
-<section id="featured" class="my-5 py-5">
+<section id="featured" class="my-5">
     <div class="container text-center">
         <h3>Our Featured</h3>
         <hr class="mx-auto">
@@ -559,13 +561,12 @@
     </div>
 </section>
 
-<section id="banner" class="my-5 py-5">
+<section id="banner">
     <div class="banners">
-        <h1 style="padding: 0 0 20px 0">Better Product</h1>
-        <br>
-        <h1 style="padding:0 0 20px 70px">Better Tomorrow</h1>
-        <br>
-        <h1 style="padding: 0 0 0 200px">Better Future</h1>
+        <h1 style="padding: 0 0 20px 0">Better Product, Better Tomorrow, Better Future</h1>
+    </div>
+    <div>
+        <h2>-TankQ CEO</h2>
     </div>
 </section>
 
