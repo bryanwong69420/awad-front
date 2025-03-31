@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,10 @@ Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
 
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
+
+Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
+Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
+Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
+Route::get('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
+Route::get('/adminAddProduct', [AdminController::class, 'storeProduct'])->name('adminAddProduct');
+Route::get('/adminAddProduct', [AdminController::class, 'showAddProductPage'])->name('adminAddProduct');
