@@ -19,14 +19,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/product', [UserController::class, 'showProduct'])->name('product');
 
+/*Product*/
+Route::get('/product', [UserController::class, 'showProduct'])->name('product');
 Route::get('/product/samsung', [ProductController::class, 'showSamsung'])->name('samsung');
 Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
 
+/*Register*/
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
 
+/*Admin Dashboard*/
 Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
 Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
 Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
