@@ -90,7 +90,17 @@
     @include('navigation')
     <div class="container mt-5 py-5">
         <div class="registration-form">
-            <form action="" method="post">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('submitUserRegistration') }}" method="post">                
+                @csrf
                 <div class="form-group">
                     <label for="userName">Username:</label>
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Username" required>
@@ -104,12 +114,12 @@
                     <input type="tel" class="form-control" id="telNo" name="telNo" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
                 </div>
                 <div class="form-group">
-                    <label for="Password">Password:</label>
-                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter Password" required>
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                 </div>
                 <div class="form-group">
-                    <label for="ConfirmPassword">Confirm Password:</label>
-                    <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" required>
+                    <label for="password_confirmation">Confirm Password:</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
                 </div>
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
