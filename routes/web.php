@@ -33,7 +33,8 @@ Route::post('/register/submit', [UserController::class,'submitUserRegistration']
 
 /*Login*/
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
-Route::post('');
+Route::post('/login/submit', [UserController::class, 'submitUserLogin'])->name('submitUserLogin');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 /*Contact*/
 Route::get('/contact',[ContactController::class, 'showContact'])->name('contact');

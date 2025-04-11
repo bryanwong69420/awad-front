@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTelephoneFieldToUsersTable extends Migration
+class AlterProductsTableDateColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddTelephoneFieldToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('telephone', 100)->nullable()->after('email');
-        });
+        Schema::table('products', function (Blueprint $table) {
+            $table->date('date_added')->default('1970-01-01')->change();
+        });        
     }
 
     /**
@@ -25,8 +25,8 @@ class AddTelephoneFieldToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['telephone']);
+        Schema::table('products', function (Blueprint $table) {
+            $table->date('date_added')->default('0000-00-00')->change();
         });
     }
 }

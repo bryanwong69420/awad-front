@@ -111,7 +111,20 @@
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('product') }}">Shop</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                <!-- Conditional Rendering -->
+                @auth
+                    <li class="nav-item">
+                        <span class="nav-link">Hi, {{ Auth::user()->name }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link" style="padding: 0;">Logout</button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                @endauth                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fa-solid fa-cart-shopping"></i>
