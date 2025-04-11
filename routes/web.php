@@ -40,9 +40,11 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/contact',[ContactController::class, 'showContact'])->name('contact');
 
 /*Admin Dashboard*/
-Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
-Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
-Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
-Route::get('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
-Route::get('/adminAddProduct', [AdminController::class, 'storeProduct'])->name('adminAddProduct');
-Route::get('/adminAddProduct', [AdminController::class, 'showAddProductPage'])->name('adminAddProduct');
+Route::middleware(['admin'])->group(function(){
+    Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
+    Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
+    Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
+    Route::get('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
+    Route::get('/adminAddProduct', [AdminController::class, 'storeProduct'])->name('adminAddProduct');
+    Route::get('/adminAddProduct', [AdminController::class, 'showAddProductPage'])->name('adminAddProduct');
+});
