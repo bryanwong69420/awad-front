@@ -116,6 +116,11 @@
                     <li class="nav-item">
                         <span class="nav-link">Hi, {{ Auth::user()->name }}</span>
                     </li>
+                    @if(Auth::user()->isAdmin)
+                        <li class="nav-item">
+                            <a href="{{ route('admin') }}" class="nav-link">Admin</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
