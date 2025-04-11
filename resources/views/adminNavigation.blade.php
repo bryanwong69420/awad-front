@@ -115,7 +115,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('adminFeedback') }}">Feedbacks</a></li>
-                <li class="nav-item"><a class="nav-link text-danger" href="/">Logout</a></li>
+                <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link" style="padding: 0;">Logout</button>
+                        </form>
+                </li>
             </ul>
         </div>
     </div>
