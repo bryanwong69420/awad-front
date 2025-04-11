@@ -81,7 +81,17 @@
     @include('navigation')
     <div class="container mt-5 py-5">
         <div class="login-form">
-            <form action="" method="post">
+        @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{  route('submitUserLogin')  }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
