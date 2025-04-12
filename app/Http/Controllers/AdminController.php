@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+
 
 class AdminController extends Controller
 {
@@ -74,41 +78,39 @@ class AdminController extends Controller
 
     public function showAddProductPage()
     {
-        return view('adminAddProduct');
+        $productTypes = DB::table('product_type')->get();
+        $companies = DB::table('company_association')->get();
+
+        return view('adminAddProduct', compact('productTypes', 'companies'));
     }
 
     public function storeProduct(Request $request)
     {
         $request->validate([
-            'id' => 'required|unique:products',
             'productName' => 'required|string|max:255',
             'productDescription' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:2048',
+            'imageLink' => 'required',
+            'productType' => 'required',
+            'companyAssociation' => 'required'
         ]);
 
-        // Store the uploaded image
-        $imagePath = $request->file('image')->store('product_images', 'public');
-
+        
         // Store product in database (if using a database)
         Product::create([
-            'id' => $request->id,
-            'productName' => $request->productName,
-            'productDescription' => $request->productDescription,
-            'quantity' => $request->quantity,
+            'name' => $request->productName,
+            'description' => $request->productDescription,
             'price' => $request->price,
-            'image' => $imagePath,
+            'image_url' => $request->imageLink,
+            'quantity' => $request->quantity,
+            'product_type' => $request->productType,
+            'company_association' => $request->companyAssociation,
+            'date_added' => Carbon::now()->format('Y-m-d')
         ]);
 
-        // Check if the product ID already exists
-        if (Product::where('id', $request->id)->exists()) {
-            return redirect()->back()->with('error', 'Product ID already exists.');
-        } else {
-            // Redirect back to admin dashboard with success message
-            return redirect('/admin')->with('success', 'Product added successfully!');
-        }
-        
+        return redirect('/admin')->with('success', 'Product added successfully!');
+
     }
 
 }

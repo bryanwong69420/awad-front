@@ -92,7 +92,7 @@
         <div class="registration-form">
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <ul>
+                    <ul style="list-style-position: inside; text-align: left; padding-left: 0; margin-bottom: 0;">
                         @foreach ($errors->all() as $error)
                             <li>{{$error}}</li>
                         @endforeach
@@ -103,23 +103,23 @@
                 @csrf
                 <div class="form-group">
                     <label for="userName">Username:</label>
-                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Username" required>
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Username" >
                 </div>
                 <div class="form-group">
                     <label for="Email">Email:</label>
-                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter Email" required>
+                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter Email" >
                 </div>
                 <div class="form-group">
                     <label for="telNo">Telephone Number:</label>
-                    <input type="tel" class="form-control" id="telNo" name="telNo" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                    <input type="tel" class="form-control" id="telNo" name="telNo" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" >
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" >
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation">Confirm Password:</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
                 </div>
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>

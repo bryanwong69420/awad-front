@@ -45,6 +45,6 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
     Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
     Route::get('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
-    Route::get('/adminAddProduct', [AdminController::class, 'storeProduct'])->name('adminAddProduct');
+    Route::post('/adminAddProduct/submit', [AdminController::class, 'storeProduct'])->name('adminStoreProduct');
     Route::get('/adminAddProduct', [AdminController::class, 'showAddProductPage'])->name('adminAddProduct');
 });
