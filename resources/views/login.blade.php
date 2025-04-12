@@ -81,9 +81,9 @@
     @include('navigation')
     <div class="container mt-5 py-5">
         <div class="login-form">
-        @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
-                    <ul>
+                    <ul style="list-style-position: inside; text-align: left; padding-left: 0; margin-bottom: 0;">
                         @foreach ($errors->all() as $error)
                             <li>{{$error}}</li>
                         @endforeach
@@ -94,11 +94,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>

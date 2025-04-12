@@ -76,50 +76,63 @@
     <section id="adminAddProduct">
     <div class="container mt-5">
         <h2>Add New Product</h2>
-
-        @if(session('error'))
+        @if ($errors->any())
             <div class="alert alert-danger">
-                {{ session('error') }}
+                <ul style="list-style-position: inside; text-align: left; padding-left: 0; margin-bottom: 0;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
-
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('adminStoreProduct') }}" method="post" enctype="multipart/form-data">
             @csrf
-            
-            <div class="form-group">
-                <label for="id">Product ID:</label>
-                <input type="text" class="form-control" id="id" name="id" required>
-            </div>
 
             <div class="form-group">
                 <label for="productName">Product Name:</label>
-                <input type="text" class="form-control" id="productName" name="productName" required>
+                <input type="text" class="form-control" id="productName" name="productName">
             </div>
 
             <div class="form-group">
                 <label for="productDescription">Product Description:</label>
-                <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
+                <textarea class="form-control" id="productDescription" name="productDescription" rows="3"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantity:</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                <input type="number" class="form-control" id="quantity" name="quantity" min="1">
             </div>
 
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price" min="0" required>
+                <input type="number" step="0.01" class="form-control" id="price" name="price" min="0">
             </div>
 
             <div class="form-group">
-                <label for="image">Product Image:</label>
-                <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
+                <label for="imageLink">Product Image Link:</label>
+                <input type="text" class="form-control" id="imageLink" name="imageLink">
+            </div>
+            
+            <!-- Product Type Dropdown -->
+            <div class="form-group">
+                <label for="productType">Product Type:</label>
+                <select class="form-control" id="productType" name="productType">
+                    <option value="">Select Product Type</option>
+                    @foreach($productTypes as $type)
+                        <option value="{{ $type->id }}">{{ $type->product_type }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Company Association Dropdown -->
+            <div class="form-group">
+                <label for="companyAssociation">Company Association:</label>
+                <select class="form-control" id="companyAssociation" name="companyAssociation">
+                    <option value="">Select Company</option>
+                    @foreach($companies as $company)
+                        <option value="{{ $company->id }}">{{ $company->company_association }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="submit-button">
                 <button type="submit" class="btn btn-primary btn-block">Add Product</button>

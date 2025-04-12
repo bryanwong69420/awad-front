@@ -56,7 +56,8 @@ class UserController extends Controller
             'userName' => 'required|string|max:255',
             'Email' => 'required|string|email|max:255|unique:users',
             'telNo' => 'required|string|max:20',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:8'
         ]);
 
         $user = User::create([
