@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 
 
@@ -67,6 +68,10 @@ class AdminController extends Controller
 
     public function deleteSelectedProduct(Request $request){;
 
+        if (! Gate::allows('delete-product')) {
+            redirect('/admin');
+        }
+
         $product = Product::find($request->id);
 
         $product->delete();
@@ -77,16 +82,31 @@ class AdminController extends Controller
 
     public function updateSelectedProduct(Request $request){
     
-        $product = Product::find($request->id);
+        if (! Gate::allows('update-product')) {
+            redirect('/admin');
+        }
+
+        $validated = $request->validate([
+            'id' => 'required',
+            'productName' => 'required|string',
+            'productDescription' => 'required|string',
+            'price' => 'required|numeric|min:1',
+            'imageUrl' => 'required|string',
+            'quantity' => 'required|integer|min:0',
+            'productType' => 'required|integer',
+            'companyAssociation' => 'required|integer'
+        ]);
+
+        $product = Product::find($validated['id']);
         if ($product) {
             $product->update([
-                'name' => $request->productName,
-                'description' => $request->productDescription,
-                'price' => $request->price,
-                'image_url' => $request->imageUrl,
-                'quantity' => $request->quantity,
-                'product_type' => $request->productType,
-                'company_association' => $request->companyAssociation
+                'name' => $validated['productName'],
+                'description' => $validated['productDescription'],
+                'price' => $validated['price'],
+                'image_url' => $validated['imageUrl'],
+                'quantity' => $validated['quantity'],
+                'product_type' => $validated['productType'],
+                'company_association' => $validated['companyAssociation']
             ]);
         }
     
@@ -103,6 +123,11 @@ class AdminController extends Controller
 
     public function storeProduct(Request $request)
     {
+
+        if (! Gate::allows('add-product')) {
+            redirect('/admin');
+        }
+        
         $request->validate([
             'productName' => 'required|string|max:255',
             'productDescription' => 'required|string',

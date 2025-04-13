@@ -150,7 +150,7 @@
                 </button>
 
                 <div id="editProductSection" class="mt-3">
-                    <form method="post" action="{{ route('adminProductView') }}" class="d-flex flex-column gap-2">
+                    <form method="get" action="{{ route('adminProductView') }}" class="d-flex flex-column gap-2">
                         @csrf
                         <input type="text" 
                             id="productId" 

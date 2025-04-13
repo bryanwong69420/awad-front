@@ -76,7 +76,7 @@
                                         </a>
 
                                         <!-- Delete Feedback (Trash Icon) -->
-                                        <form action="{{ url('/adminFeedbackDelete/' . $id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
+                                        <form action="{{ url('adminFeedbackDelete/' . $id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this feedback?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link text-danger p-0 ms-4" title="Delete Feedback">
