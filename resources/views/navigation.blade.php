@@ -131,7 +131,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                 @endauth                
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('showCartPage') }}" class="nav-link">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                 </li>
