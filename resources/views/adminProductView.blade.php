@@ -139,18 +139,22 @@
                 </div>
 
 
-                <!-- Buttons -->
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-success w-100">Save Changes</button>
-                </div>
+            <!-- Show Save button only if user can update products -->
+            @can('update-product')
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success w-100">Save Changes</button>
+            </div>
+            @endcan
             </form>
 
             <!-- Delete Button -->
+             @can('delete-product')
             <form action="/admin-delete-product" method="post">
                 @csrf
                 <input type="hidden" name="id" value="{{ $product['id'] }}">
                 <button type="submit" class="btn btn-danger w-100 mt-2">Delete Product</button>
             </form>
+            @endcan
 
             <div>
                 <a href="{{ url('/admin') }}" class="btn btn-secondary btn-block w-100 mt-2">Cancel</a>
