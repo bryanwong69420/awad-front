@@ -1,10 +1,3 @@
-<?php
-session_start();
-include 'db.php'; // Assuming your db.php file is set up correctly
-
-$total = 0;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,14 +117,13 @@ $total = 0;
 </head>
 <body>
 
-<?php include('includes/navigation.php'); ?> 
+@include('navigation')
 
 <section id="blog-home" class="pt-5 mt-5 container my-5">
     <h2 clas="font-weight-bold pt-5">Shopping Cart</h2>
     <hr>
 </section>
 
-<form action="updateCart.php" method="post">
     <section id="cart-container" class="container">
         <table width="100%">
             <thead>
@@ -145,20 +137,38 @@ $total = 0;
                 </tr>
             </thead>
             <tbody>
-                <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
-                    <?php foreach ($_SESSION['cart'] as $productId => $productDetails): ?>
-                        <tr>
-                            <td><a href="removeFromCart.php?id=<?= $productId; ?>"><i class="fas fa-trash-alt"></i></a></td>
-                            <td><img src="<?= $productDetails['image_url']; ?>" alt="" style="width: 100px; height: 80px;"></td>
-                            <td><?= $productDetails['name']; ?></td>
-                            <td>$<?= $productDetails['price']; ?></td>
-                            <td><input class="w-25 pl-1" name="quantity[<?= $productId; ?>]" value="<?= $productDetails['quantity']; ?>" type="number" disabled></td>
-                            <td>$<?= $productDetails['price'] * $productDetails['quantity']; ?></td>
-                        </tr>
-                        <?php $total += $productDetails['price'] * $productDetails['quantity']; ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
+            @foreach($cartItems as $productId => $item)
+                <tr>
+                    <td>
+                    <form action="{{ route('removeItemFromCartSession') }}" method="get">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $productId }}">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <span style="display: inline-block; width: 14px; height: 14px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td><img src="{{ $item['imageUrl'] }}" width="50"></td>
+                    <td>{{ $item['productName'] }}</td>
+                    <td>${{ number_format($item['price'], 2) }}</td>
+                    <td>
+                        <form action="{{ route('updateCartItemQuantity') }}" method="get">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $productId }}">
+                            <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="form-control" style="width: 60px">
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                        </form>
+                    </td>
+                    <td>${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+
+                </tr>
+            @endforeach
+        </tbody>
         </table>
     </section>
 
@@ -169,19 +179,20 @@ $total = 0;
                 <table class="table">
                     <tr>
                         <th>Total:</th>
-                        <td>$<?= number_format($total, 2); ?></td>
+                        <td>
+                        ${{ number_format(array_reduce($cartItems, function($carry, $item) {
+                            return $carry + ($item['price'] * $item['quantity']);
+                        }, 0), 2) }}
+                    </td>
                     </tr>
                 </table>
-                <a href="payment.php" class="btn btn-success btn-block">Proceed to Checkout</a>
+                <a href="" class="btn btn-success btn-block">Buy</a>
             </div>
         </div>
     </div>
-</form>
 
 
 
-
-<?php include('includes/footer.php'); ?> 
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -191,6 +202,7 @@ $total = 0;
 
 
 </script>
+@include('footer')
 
 </body>
 </html>
