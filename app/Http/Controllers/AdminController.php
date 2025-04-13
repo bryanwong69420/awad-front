@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductType;
+use App\Models\CompanyAssociation;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
@@ -49,8 +51,8 @@ class AdminController extends Controller
     public function showSelectedProducts(Request $request)
     {
 
-        $productTypes = DB::table('product_type')->get();
-        $companies = DB::table('company_association')->get();
+        $productTypes = ProductType::all();
+        $companies = CompanyAssociation::all();
 
         $validated = $request->validate([
             'productId' => 'required'
@@ -115,8 +117,8 @@ class AdminController extends Controller
 
     public function showAddProductPage()
     {
-        $productTypes = DB::table('product_type')->get();
-        $companies = DB::table('company_association')->get();
+        $productTypes = ProductType::all();
+        $companies = CompanyAssociation::all();
 
         return view('adminAddProduct', compact('productTypes', 'companies'));
     }
