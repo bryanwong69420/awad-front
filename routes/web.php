@@ -43,8 +43,11 @@ Route::get('/contact',[ContactController::class, 'showContact'])->name('contact'
 Route::middleware(['admin'])->group(function(){
     Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
     Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
-    Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
-    Route::get('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
+    Route::post('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
+    Route::post('/admin-delete-product', [AdminController::class, 'deleteSelectedProduct'])->name('adminDeleteSelectedProduct');
+    Route::post('/admin-update-product', [AdminController:: class, 'updateSelectedProduct'])->name('adminUpdateSelectedProduct');
+    Route::post('/adminProductView', [AdminController::class, 'showSelectedProducts'])->name('adminProductView');
     Route::post('/adminAddProduct/submit', [AdminController::class, 'storeProduct'])->name('adminStoreProduct');
     Route::get('/adminAddProduct', [AdminController::class, 'showAddProductPage'])->name('adminAddProduct');
 });
+

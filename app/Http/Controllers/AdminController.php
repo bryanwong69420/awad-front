@@ -47,33 +47,50 @@ class AdminController extends Controller
 
     public function showSelectedProducts(Request $request)
     {
-        $products = [
-            'i15p' => [
-                'productName' => 'Iphone 15', 
-                'productDescription' => 'This is the iphone 15th generation, it has the new function of its sidebar as camera zooming function', 
-                'quantity' => 100, 
-                'price' => 3600.99,
-                'image' =>'/pic/mobile/i15p.webp'
-            ],
-            
-            'pods' => [
-                'productName' => 'Apple Pods', 
-                'productDescription' => "This is a bluetooth wireless pods which is only for Apple users", 
-                'quantity' => 100, 
-                'price' => 100.45,
-                'image' => '/pic/digital/pods.webp'
-            ]
-        ];
-        
-        // Get the ID from the URL query string
-        $id = $request->query('id');
 
-        // Check if the requested ID exists in the feedback array
-        if (array_key_exists($id, $products)) {
-            return view('adminProductView', ['product' => $products[$id], 'id' => $id]);
-        } else {
+        $productTypes = DB::table('product_type')->get();
+        $companies = DB::table('company_association')->get();
+
+        $validated = $request->validate([
+            'productId' => 'required'
+        ]);
+
+        $product = Product::find($validated['productId']);
+
+        if(!$product){
             return redirect('/admin')->with('error', 'Product not found.');
+        }else{
+             return view('adminProductView', compact('product', 'productTypes', 'companies'));
         }
+
+    }
+
+    public function deleteSelectedProduct(Request $request){;
+
+        $product = Product::find($request->id);
+
+        $product->delete();
+
+        return redirect('/admin');
+
+    }
+
+    public function updateSelectedProduct(Request $request){
+    
+        $product = Product::find($request->id);
+        if ($product) {
+            $product->update([
+                'name' => $request->productName,
+                'description' => $request->productDescription,
+                'price' => $request->price,
+                'image_url' => $request->imageUrl,
+                'quantity' => $request->quantity,
+                'product_type' => $request->productType,
+                'company_association' => $request->companyAssociation
+            ]);
+        }
+    
+        return redirect('/admin')->with('success', 'Product updated successfully!');
     }
 
     public function showAddProductPage()

@@ -150,11 +150,22 @@
                 </button>
 
                 <div id="editProductSection" class="mt-3">
-                    <input type="text" id="searchProduct" placeholder="Enter Product ID">
-                    <button id="searchButton" class="btn btn-info btn-custom">
-                        <i class="fa-solid fa-magnifying-glass"></i> Search
-                    </button>
+                    <form method="post" action="{{ route('adminProductView') }}" class="d-flex flex-column gap-2">
+                        @csrf
+                        <input type="text" 
+                            id="productId" 
+                            name="productId"
+                            placeholder="Enter Product ID"
+                            class="form-control search-input-style">
+                            
+                        <button type="submit" 
+                                id="searchButton" 
+                                class="btn btn-info btn-custom w-100">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
+                        </button>
+                    </form>
                 </div>
+
             </div>
 
             <!-- View Feedback Section -->
@@ -170,6 +181,15 @@
                     {{ session('error') }}
                 </div>
             @endif
+
+            <!-- Add validation error display -->
+            @if($errors->any())
+                <div class="alert alert-danger mt-3">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
         </div>
         </section>
 
@@ -181,17 +201,6 @@
                 editSection.style.display = "block";
             } else {
                 editSection.style.display = "none";
-            }
-        });
-
-        // Redirect with Product ID
-        document.getElementById("searchButton").addEventListener("click", function(event) {
-            event.preventDefault();
-            let productId = document.getElementById("searchProduct").value;
-            if (productId) {
-                window.location.href = "{{ url('/adminProductView') }}?id=" + productId;
-            } else {
-                alert("Please enter a Product ID.");
             }
         });
         </script>

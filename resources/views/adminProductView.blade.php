@@ -65,36 +65,79 @@
         <h2>Edit Product</h2>
         <div class="card shadow p-4">
             <!-- Product Image -->
-            <img src="{{ $product['image'] }}" alt="Product Image" class="img-fluid rounded mb-3">
+            <img src="{{ $product['image_url'] }}" alt="Product Image" class="img-fluid rounded mb-3">
 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul style="list-style-position: inside; text-align: left; padding-left: 0; margin-bottom: 0;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <!-- Product Edit Form -->
-            <form action="" method="POST">
+            <form action="/admin-update-product" method="post">
                 @csrf
-                <input type="hidden" name="id" value="{{ $id }}">
+                <input type="hidden" name="id" value="{{ $product['id'] }}">
 
                 <div class="mb-3">
                     <label class="form-label">Product Name</label>
-                    <input type="text" name="productName" class="form-control" value="{{ $product['productName'] }}" required>
+                    <input type="text" name="productName" class="form-control" value="{{ $product['name'] }}" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea name="productDescription" class="form-control" required>{{ $product['productDescription'] }}</textarea>
+                    <textarea name="productDescription" class="form-control" >{{ $product['description'] }}</textarea>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Price ($)</label>
-                    <input type="number" name="price" class="form-control" step="0.01" value="{{ $product['price'] }}" required>
+                    <input type="number" name="price" class="form-control" step="0.01" value="{{ $product['price'] }}" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Image Url: </label>
+                    <input type="text" name="imageUrl" class="form-control" value="{{ $product['image_url'] }}" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Quantity</label>
                     <div class="d-flex align-items-center">
                         <button type="button" class="quantity-btn" onclick="adjustQuantity(-1)">-</button>
-                        <input type="number" name="quantity" id="quantity" class="form-control text-center mx-2" style="width: 80px;" value="{{ $product['quantity'] }}" required>
+                        <input type="number" name="quantity" id="quantity" class="form-control text-center mx-2" style="width: 80px;" value="{{ $product['quantity'] }}">
                         <button type="button" class="quantity-btn" onclick="adjustQuantity(1)">+</button>
                     </div>
                 </div>
+
+                <!-- Product Type Dropdown -->
+                <div class="form-group">
+                    <label for="productType">Product Type:</label>
+                    <select class="form-control" id="productType" name="productType">
+                        <option value="">Select Product Type</option>
+                        @foreach($productTypes as $type)
+                            <option value="{{ $type->id }}" 
+                                {{ $type->id == $product->product_type ? 'selected' : '' }}>
+                                {{ $type->product_type }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Company Association Dropdown -->
+                <div class="form-group">
+                    <label for="companyAssociation">Company Association:</label>
+                    <select class="form-control" id="companyAssociation" name="companyAssociation">
+                        <option value="">Select Company</option>
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}"
+                                {{ $company->id == $product->company_association ? 'selected' : '' }}>
+                                {{ $company->company_association }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
 
                 <!-- Buttons -->
                 <div class="mt-4">
@@ -103,9 +146,9 @@
             </form>
 
             <!-- Delete Button -->
-            <form action="" method="POST" onsubmit="return confirmDelete();">
+            <form action="/admin-delete-product" method="post">
                 @csrf
-                <input type="hidden" name="id" value="{{ $id }}">
+                <input type="hidden" name="id" value="{{ $product['id'] }}">
                 <button type="submit" class="btn btn-danger w-100 mt-2">Delete Product</button>
             </form>
 
@@ -125,10 +168,6 @@
             }
         }
 
-        // Confirm delete function
-        function confirmDelete() {
-            return confirm("Are you sure you want to delete this product?");
-        }
     </script>
 </body>
 </html>
