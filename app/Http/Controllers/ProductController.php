@@ -4,116 +4,54 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\CompanyAssociation;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function showSamsung()
-    {
-        return view('samsung'); 
+    public function index(Request $request)
+{
+    $query = Product::query();
+
+    // Optional sorting
+    if ($request->has('sort')) {
+        if ($request->sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        }
     }
 
-    public function showLG()
-    {
-        return view('lg');
-    }
+    $products = $query->get();
 
-    public function showSony()
-    {
-        return view('sony');
-    }
+    return view('product', [
+        'products' => $products,
+        'brand' => 'All Brands'
+    ]);
+}
 
-    public function showPanasonic()
+    public function filterByCompany(Request $request, $company)
     {
-        return view('panasonic');
-    }
+        $company = Str::upper($company);
+        $companyModel = CompanyAssociation::where('company_association', $company)->firstOrFail();
 
-    public function showApple()
-    {
-        return view('apple');
-    }
+        // Default query
+        $query = $companyModel->products();
 
-    public function showXiaomi()
-    {
-        return view('xiaomi');
-    }
+        // Apply sorting if requested
+        if ($request->has('sort')) {
+            if ($request->sort === 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort === 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        }
 
-    public function showBelkin()
-    {
-        return view('belkin');
-    }
+        $products = $query->get();
 
-    public function showRapoo()
-    {
-        return view('rapoo');
-    }
-
-    public function showMicrosoft()
-    {
-        return view('microsoft');
-    }
-
-    public function showDeka()
-    {
-        return view('deka');
-    }
-
-    public function showHaier()
-    {
-        return view('haier');
-    }
-
-    public function showRombam()
-    {
-        return view('rombam');
-    }
-
-    public function showNescafe()
-    {
-        return view('nescafe');
-    }
-
-    public function showKhind()
-    {
-        return view('khind');
-    }
-
-    public function showSharp()
-    {
-        return view('sharp');
-    }
-
-    public function showOgawa()
-    {
-        return view('ogawa');
-    }
-
-    public function showLaifen()
-    {
-        return view('laifen');
-    }
-
-    public function showAqara()
-    {
-        return view('aqara');
-    }
-
-    public function showUniq()
-    {
-        return view('uniq');
-    }
-
-    public function showFaber()
-    {
-        return view('faber');
-    }
-
-    public function showKdk()
-    {
-        return view('kdk');
-    }
-
-    public function showUnknown()
-    {
-        return view('unknown');
+        return view('/product', [
+            'products' => $products,
+            'brand' => $companyModel->company_association
+        ]);
     }
 }
