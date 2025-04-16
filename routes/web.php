@@ -42,6 +42,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 /*Contact*/
 Route::get('/contact',[ContactController::class, 'showContact'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 /*Admin Dashboard*/
 Route::middleware(['admin'])->group(function(){

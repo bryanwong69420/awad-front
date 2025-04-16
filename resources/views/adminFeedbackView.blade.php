@@ -30,11 +30,11 @@
         <h2>Feedback Details</h2>
         
         <div class="card shadow p-4">
-            <p><strong>Username: </strong> {{ $feedback['customerName'] }}</p>
-            <p><strong>Email:</strong> {{ $feedback['email'] }}</p>
+            <p><strong>Username: </strong> {{ $feedback->customer_name  }}</p>
+            <p><strong>Email:</strong> {{ $feedback->email }}</p>
             <p><strong>Message:</strong></p>
-            <p>{{ $feedback['message'] }}</p>
-            <p><strong>Submit Date:</strong> {{ $feedback['submitDate'] }}</p>
+            <p>{{ $feedback->message  }}</p>
+            <p><strong>Submit Date:</strong> {{ \Carbon\Carbon::parse($feedback->submit_date)->format('d M Y')}}</p>
 
             <a href="{{ url('/adminFeedback') }}" class="btn btn-secondary">Back</a>
         </div>

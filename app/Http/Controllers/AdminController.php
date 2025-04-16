@@ -9,6 +9,7 @@ use App\Models\CompanyAssociation;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
+use App\Models\UserMessage;
 
 
 
@@ -23,28 +24,27 @@ class AdminController extends Controller
     // Show list of feedbacks
     public function feedbackList()
     {
-        $feedbacks = [
-            'f01' => ['customerName' => 'Bryan', 'email' => 'bryan@abc.com', 'message' => 'I have a problem when using the website where whenever i want to go to the washing machine section, i cannot enter', 'submitDate' => '12 June 2023', 'isRead' => false],
-            'fo2' => ['customerName' => 'Wei Chang', 'email' => 'weichang@abcd.com', 'message' => 'Hello there', 'submitDate' => '2 March 2024', 'isRead' => true]
-        ];
+        $feedbacks =  UserMessage::orderBy('submit_date', 'desc')->get();
         return view('adminFeedback', compact('feedbacks'));
     }
 
     public function viewFeedback(Request $request)
     {
-        $feedbacks = [
-            'f01' => ['customerName' => 'Bryan', 'email' => 'bryan@abc.com', 'message' => 'I have a problem when using the website where whenever i want to go to the washing machine section, i cannot enter', 'submitDate' => '12 June 2023', 'isRead' => false],
-            'fo2' => ['customerName' => 'Wei Chang', 'email' => 'weichang@abcd.com', 'message' => 'Hello there', 'submitDate' => '2 March 2024', 'isRead' => true]
-        ];
 
         // Get the ID from the URL query string
         $id = $request->query('id');
+        $feedback = UserMessage::find($id);
 
         // Check if the requested ID exists in the feedback array
-        if (array_key_exists($id, $feedbacks)) {
-            return view('adminFeedbackView', ['feedback' => $feedbacks[$id]]);
+        if ($feedback) {
+            if (!$feedback->read_status) {
+                $feedback->read_status = 1;
+                $feedback->save();
+            }
+        
+            return view('adminFeedbackView', compact('feedback'));
         } else {
-            return redirect('/adminFeedback')->with('error', 'Feedback not found.');
+            return redirect()->route('adminFeedback')->with('error', 'Feedback not found.');
         }
     }
 
