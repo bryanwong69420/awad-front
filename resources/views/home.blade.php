@@ -394,7 +394,6 @@
         <a href="/shopping"><button class="transform">Shop now</button></a> <!-- the link can change-->
     </div>
 </section>
-
 <section id="brand" class="container">
     <div class="logo-container">
         <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/lg.png" alt="">
@@ -406,32 +405,6 @@
     </div>
 </section>
 
-<section id="new" class="w-100">
-    <div class="row mx-auto container-fluid">
-        <div class="one col-lg-4 col-md-12 col-12 p-0">
-            <img class="img-fluid" src="/pic/extreme.jpeg" alt="" style="opacity: 0.5; aspect-ratio: 612 / 477">
-            <div class="details">
-                <h2>Extreme Rare</h2>
-                <button class="text-uppercase">Shop Now</button>
-            </div>
-        </div>
-        <div class="one col-lg-4 col-md-12 col-12 p-0">
-            <img class="img-fluid" src="/pic/offer.jpg" alt="" style="opacity: 0.5; object-fit: cover; height:auto; aspect-ratio: 612 / 477;">
-            <div class="details">
-                <h2>Offer</h2>
-                <button class="text-uppercase">Shop Now</button>
-            </div>
-        </div>
-        <div class="one col-lg-4 col-md-12 col-12 p-0">
-            <img class="img-fluid" src="/pic/new.jpg" alt="" style="opacity: 0.5; aspect-ratio: 612 / 477">
-            <div class="details">
-                <h2>New</h2>
-                <button class="text-uppercase">Shop Now</button>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section id="newrelease" class="my-5 py-5">
     <div class="container text-center mt-5 py-5">
         <h3>New Release</h3>
@@ -439,64 +412,26 @@
         <p>Here you can check out some of the new release products</p>
     </div>
     <div class="row mx-auto container-fluid">
+        @foreach($newReleaseProducts as $product)
         <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/pods.webp" alt="">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
             <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
             </div>
-            <h5 class="p-name">Apple AirPods Pro (2nd generation) with MagSafe Charging Case (USB‑C)</h5>
-            <h4 class="p-name">$100.00</h4>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
             <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Apple Watch Series 9 Aluminum Case with Sport Band GPS + Cellular</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy Watch5 Pro 45mm</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/buds.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy Buds2 Pro</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
+        @endforeach
     </div>
     <div class="text-center mt-4">
         <a href="/newrelease" class="see-more-btn">
             Show More <i class="fa-solid fa-arrow-right"></i>
         </a>
     </div>
+    
 </section>
 
 <section id="featured" class="my-5">
@@ -505,7 +440,7 @@
         <hr class="mx-auto">
         <p>Here you can check out our featured product</p>
     </div>
-    <div class="row mx-auto container-fluid">
+    <!-- <div class="row mx-auto container-fluid">
         <div class="product text-center col-lg-3 col-md-4 col-12">
             <img class="img-fluid mb-3" src="/pic/featured/wash.webp" alt="">
             <div class="star">
@@ -558,6 +493,26 @@
             <h4 class="p-name">$100.00</h4>
             <button class="buy-btn">Buy Now</button>
         </div>
+    </div> -->
+    <div class="row mx-auto container-fluid">
+        @foreach($ourFeaturedProducts as $product)
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
+            <div class="star">
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
+            </div>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        @endforeach
+    </div>
+    <div class="text-center mt-4">
+        <a href="/newrelease" class="see-more-btn">
+            Show More <i class="fa-solid fa-arrow-right"></i>
+        </a>
     </div>
 </section>
 
@@ -577,58 +532,19 @@
         <p>Here you can check out some of the kitchen appliances</p>
     </div>
     <div class="row mx-auto container-fluid">
+        @foreach($kitchenProducts->where('product_type', 1) as $product)
         <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/panasonic.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
             <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
             </div>
-            <h5 class="p-name">Panasonic Ultra Filtration Alkaline Ionizer</h5>
-            <h4 class="p-name">$100.00</h4>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
             <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/elba.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Elba 1.7L Jug Kettle</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/refri.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Elba 2 Door Fridge 250L</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/kitchen/khino.webp" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Khind Multi Blender Chopper</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
+        @endforeach
     </div>
     <div class="text-center mt-4">
         <a href="/kitchen" class="see-more-btn">
@@ -644,58 +560,19 @@
         <p>Here you can check out our new released mobile phone</p>
     </div>
     <div class="row mx-auto container-fluid">
+        @foreach($mobileProducts->where('product_type', 2) as $product)
         <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/mobile/i15pm.webp" alt="">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
             <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
             </div>
-            <h5 class="p-name">iPhone 15 Pro Max</h5>
-            <h4 class="p-name">$100.00</h4>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
             <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/mobile/i15p.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">iPhone 15 Plus</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/mobile/galaxys24u.jpg" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy S24 Ultra 5G</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/mobile/galaxys24.jpg" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy S24+ 5G</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
+        @endforeach
     </div>
     <div class="text-center mt-4">
         <a href="/mobile" class="see-more-btn">
@@ -708,61 +585,22 @@
     <div class="container text-center">
         <h3>Digital Gadget</h3>
         <hr class="mx-auto">
-        <p>Here you can check out some of the digital gadget</p>
+        <p>Here you can check out some of the digital gadgets</p>
     </div>
     <div class="row mx-auto container-fluid">
+        @foreach($digitalProducts->where('product_type', 3) as $product)
         <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/pods.webp" alt="">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
             <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
             </div>
-            <h5 class="p-name">Apple AirPods Pro (2nd generation) with MagSafe Charging Case (USB‑C)</h5>
-            <h4 class="p-name">$100.00</h4>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
             <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Apple Watch Series 9 Aluminum Case with Sport Band GPS + Cellular</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/samsung.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy Watch5 Pro 45mm</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="/pic/digital/buds.webp" alt="">
-            <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h5 class="p-name">Samsung Galaxy Buds2 Pro</h5>
-            <h4 class="p-name">$100.00</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
+        @endforeach
     </div>
     <div class="text-center mt-4">
         <a href="/digital" class="see-more-btn">
@@ -770,6 +608,7 @@
         </a>
     </div>
 </section>
+
         @include('footer')
     </body>
 </html>

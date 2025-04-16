@@ -230,7 +230,7 @@
         
         <div class="contact-info mb-4">
             <h4>Email:</h4>
-            <p>klop@gmail.com</p>
+            <p>TankQ@gmail.com</p>
         </div>
         
         <div class="contact-form">

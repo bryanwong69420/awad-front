@@ -19,15 +19,17 @@ use App\Models\Product;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 /*Product*/
-Route::get('/product', [UserController::class, 'showProduct'])->name('product');
-Route::get('/product/samsung', [ProductController::class, 'showSamsung'])->name('samsung');
-Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
+Route::get('/brand/{company}', [ProductController::class, 'filterByCompany'])->name('products.byCompany');
+
 
 /*Register*/
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
