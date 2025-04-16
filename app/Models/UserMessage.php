@@ -10,4 +10,5 @@ class UserMessage extends Model
     use HasFactory;
 
     protected $table = 'user_message';
+    protected $fillable = ['customer_name', 'email', 'message', 'submit_date', 'read_status'];
 }
