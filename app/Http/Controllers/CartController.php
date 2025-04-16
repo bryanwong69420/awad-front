@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Product;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -12,7 +12,7 @@ class CartController extends Controller
         $product = Product::find($request->id);
         
         if (!$product) {
-            return redirect()->back()->with('error', 'Product not found');
+            return redirect()->back();
         }
         
         // Get current cart items or initialize empty array
@@ -35,7 +35,7 @@ class CartController extends Controller
         // Save updated cart items back to session
         session()->put('cart.items', $cartItems);
 
-        return redirect()->route('showCartPage')->with('success', 'Test products added to cart');
+        return redirect()->route('showCartPage');
 
     }
     
@@ -69,7 +69,22 @@ class CartController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'quantity' => 'required|integer|min:1'
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                function ($attribute, $value, $fail) use ($request) {
+                    // Get the product from database
+                    $product = Product::find($request->id);
+                    
+                    // Check if product exists and has enough quantity
+                    if (!$product) {
+                        $fail('Product not found.');
+                    } elseif ($product->quantity < $value) {
+                        $fail('The requested quantity exceeds available stock. Only ' . $product->quantity . ' available.');
+                    }
+                }
+            ]
         ]);
         
         $cartItems = session()->get('cart.items', []);
@@ -87,12 +102,15 @@ class CartController extends Controller
     public function buyItemsfromCart(){
         $cartItems = session()->get('cart.items', []);
 
-        foreach($cartItems as $cartItem){
-            Product::update([
+        foreach($cartItems as $productId => $cartItem){
+            $product = Product::find($productId);
 
-            ]);
+            $product->quantity -= $cartItem['quantity'];
+            $product->save();
         };
-        
-        return;
-    }
+
+        session()->forget('cart.items');
+
+        return redirect()->route('home')->with('purchase_success', 'Thank you for your purchase!');
+   }
 }

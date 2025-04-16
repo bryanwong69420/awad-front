@@ -125,6 +125,15 @@
 </section>
 
     <section id="cart-container" class="container">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul style="list-style-position: inside; text-align: left; padding-left: 0; margin-bottom: 0;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <table width="100%">
             <thead>
                 <tr>
@@ -186,7 +195,10 @@
                     </td>
                     </tr>
                 </table>
-                <a href="" class="btn btn-success btn-block">Buy</a>
+                <form action="{{ route('buyItemsFromCart') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-success btn-block">Buy</button>
+                </form>
             </div>
         </div>
     </div>

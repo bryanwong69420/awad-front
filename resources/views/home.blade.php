@@ -387,6 +387,19 @@
     </head>
     <body>
         @include('navigation')
+        @if(session('purchase_success'))
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('purchase_success') }}",
+                        icon: 'success',
+                        confirmButtonText: 'Continue Shopping'
+                    });
+                });
+            </script>
+        @endif
         <section id="home">
     <div class="container card">
         <h5 class="mt-3">NEW ARRIVAL</h5>
