@@ -18,25 +18,7 @@ class CreateProductTypeTable extends Migration
         Schema::create('product_type', function (Blueprint $table) {
             $table->id();
             $table->string('product_type', 255);
-        });
-
-        // Predefined status values
-        $statuses = [
-            [
-                'product_type' => 'KitchenAppliances',
-
-            ],
-            [
-                'product_type' => 'BestMobile',
-
-            ],
-            [
-                'product_type' => 'DigitalGadget',
-
-            ]
-        ];
-
-        DB::table('product_type')->insert($statuses);        
+        });   
     }
 
     /**

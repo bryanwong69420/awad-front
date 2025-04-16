@@ -83,4 +83,16 @@ class CartController extends Controller
         
         return redirect()->back()->with('error', 'Item not found in cart');
     }
+
+    public function buyItemsfromCart(){
+        $cartItems = session()->get('cart.items', []);
+
+        foreach($cartItems as $cartItem){
+            Product::update([
+
+            ]);
+        };
+        
+        return;
+    }
 }
