@@ -14,7 +14,7 @@ class AddQuantityFieldToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('quantity')->after('stars');
+            $table->integer('quantity')->after('date_added');
         });
     }
 

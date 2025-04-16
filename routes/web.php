@@ -19,15 +19,39 @@ use App\Models\Product;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 /*Product*/
 Route::get('/product', [UserController::class, 'showProduct'])->name('product');
 Route::get('/product/samsung', [ProductController::class, 'showSamsung'])->name('samsung');
 Route::get('/product/lg', [ProductController::class, 'showLG'])->name('lg');
+Route::get('/product/sony', [ProductController::class, 'showSony'])->name('sony');
+Route::get('/product/panasonic', [ProductController::class, 'showPanasonic'])->name('panasonic');
+Route::get('/product/apple', [ProductController::class, 'showApple'])->name('apple');
+Route::get('/product/xiaomi', [ProductController::class, 'showXiaomi'])->name('xiaomi');
+Route::get('/product/belkin', [ProductController::class, 'showBelkin'])->name('belkin');
+Route::get('/product/huawei', [ProductController::class, 'showHuawei'])->name('huawei');
+Route::get('/product/rapoo', [ProductController::class, 'showRapoo'])->name('rapoo');
+Route::get('/product/microsoft', [ProductController::class, 'showMicrosoft'])->name('microsoft');
+Route::get('/product/deka', [ProductController::class, 'showDeka'])->name('deka');
+Route::get('/product/haier', [ProductController::class, 'showHaier'])->name('haier');
+Route::get('/product/rombam', [ProductController::class, 'showRombam'])->name('rombam');
+Route::get('/product/nescafe', [ProductController::class, 'showNescafe'])->name('nescafe');
+Route::get('/product/khind', [ProductController::class, 'showKhind'])->name('khind');
+Route::get('/product/sharp', [ProductController::class, 'showSharp'])->name('sharp');
+Route::get('/product/ogawa', [ProductController::class, 'showOgawa'])->name('ogawa');
+Route::get('/product/laifen', [ProductController::class, 'showLaifen'])->name('laifen');
+Route::get('/product/aqara', [ProductController::class, 'showAqara'])->name('aqara');
+Route::get('/product/uniq', [ProductController::class, 'showUniq'])->name('uniq');
+Route::get('/product/faber', [ProductController::class, 'showFaber'])->name('faber');
+Route::get('/product/kdk', [ProductController::class, 'showKdk'])->name('kdk');
+Route::get('/product/unknown', [ProductController::class, 'showUnknown'])->name('unknown');
+
 
 /*Register*/
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
