@@ -49,6 +49,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
     Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
     Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
+    Route::delete('/adminFeedbackDelete/{id}', [AdminController::class, 'deleteFeedback'])->name('admin.feedback.delete');
     Route::post('/admin-delete-product', [AdminController::class, 'deleteSelectedProduct'])->name('adminDeleteSelectedProduct');
     Route::post('/admin-update-product', [AdminController:: class, 'updateSelectedProduct'])->name('adminUpdateSelectedProduct');
     Route::post('/adminAddProduct/submit', [AdminController::class, 'storeProduct'])->name('adminStoreProduct');
