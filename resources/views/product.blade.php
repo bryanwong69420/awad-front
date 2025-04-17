@@ -410,7 +410,12 @@
                     </div>
                     <h5 class="p-name">{{ $product->name }}</h5>
                     <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
-                    <button class="buy-btn">Buy Now</button>
+                    <form method="POST" action="{{ route('addItemToCartSession') }}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="buy-btn">Buy Now</button>
+                    </form>
                 </div>
             @empty
                 <div class="col-12">

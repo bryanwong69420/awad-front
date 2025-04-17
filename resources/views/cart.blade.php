@@ -187,7 +187,7 @@
                     </tr>
                 </table>
                 <a href="" class="btn btn-success btn-block">Buy</a>
-            </div>
+            </div> 
         </div>
     </div>
 

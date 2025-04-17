@@ -60,7 +60,7 @@ Route::middleware(['admin'])->group(function(){
 /*Cart Page*/
 Route::middleware(['inSession'])->group(function(){
     Route::get('/cart', [CartController::class, 'showCartPage'])->name('showCartPage');
-    Route::get('/add-item-to-cart-session', [CartController::class, 'addItemToCartSession'])->name('addItemToCartSession');
+    Route::post('/add-item-to-cart-session', [CartController::class, 'addItemToCartSession'])->name('addItemToCartSession');
     Route::get('/remove-item-from-cart-session', [CartController::class, 'removeItemFromCartSession'])->name('removeItemFromCartSession');
     Route::get('/update-item-quantity', [CartController::class, 'updateCartItemQuantity'])->name('updateCartItemQuantity');
     
