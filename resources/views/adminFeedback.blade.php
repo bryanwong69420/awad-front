@@ -70,7 +70,8 @@
                                     <td class="py-2 px-3">{{ $feedback->email }}</td>
                                     <td class="py-2 px-3">{{ Str::limit($feedback['message'], 50) }}</td>
                                     <td class="py-2 px-3">
-                                        {{ \Carbon\Carbon::parse($feedback->submit_date)->format('d M Y')}}</td>
+                                        {{ \Carbon\Carbon::parse($feedback->submit_date)->format('d M Y')}}
+                                    </td>
                                     <td class="py-2 px-3">
                                         @if ($feedback->read_status)
                                             <span class="badge bg-success">✅ Read</span>
@@ -88,7 +89,7 @@
 
 
                                             <!-- Delete Feedback (Trash Icon) -->
-                                            <form action="{{ url('adminFeedbackDelete/' . $id) }}" method="POST"
+                                            <form action="{{ route('admin.feedback.delete', $feedback->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this feedback?');">
                                                 @csrf
                                                 @method('DELETE')

@@ -24,7 +24,7 @@ class AdminController extends Controller
     // Show list of feedbacks
     public function feedbackList()
     {
-        $feedbacks =  UserMessage::orderBy('submit_date', 'desc')->get();
+        $feedbacks = UserMessage::orderBy('submit_date', 'desc')->get();
         return view('adminFeedback', compact('feedbacks'));
     }
 
@@ -41,11 +41,24 @@ class AdminController extends Controller
                 $feedback->read_status = 1;
                 $feedback->save();
             }
-        
+
             return view('adminFeedbackView', compact('feedback'));
         } else {
             return redirect()->route('adminFeedback')->with('error', 'Feedback not found.');
         }
+    }
+
+
+    public function deleteFeedback($id)
+    {
+        $feedback = UserMessage::find($id);
+
+        if ($feedback) {
+            $feedback->delete();
+            return redirect()->route('adminFeedback')->with('success', 'Feedback deleted successfully.');
+        }
+
+        return redirect()->route('adminFeedback')->with('error', 'Feedback not found.');
     }
 
     public function showSelectedProducts(Request $request)
@@ -60,17 +73,19 @@ class AdminController extends Controller
 
         $product = Product::find($validated['productId']);
 
-        if(!$product){
+        if (!$product) {
             return redirect('/admin')->with('error', 'Product not found.');
-        }else{
-             return view('adminProductView', compact('product', 'productTypes', 'companies'));
+        } else {
+            return view('adminProductView', compact('product', 'productTypes', 'companies'));
         }
 
     }
 
-    public function deleteSelectedProduct(Request $request){;
+    public function deleteSelectedProduct(Request $request)
+    {
+        ;
 
-        if (! Gate::allows('delete-product')) {
+        if (!Gate::allows('delete-product')) {
             redirect('/admin');
         }
 
@@ -82,9 +97,10 @@ class AdminController extends Controller
 
     }
 
-    public function updateSelectedProduct(Request $request){
-    
-        if (! Gate::allows('update-product')) {
+    public function updateSelectedProduct(Request $request)
+    {
+
+        if (!Gate::allows('update-product')) {
             redirect('/admin');
         }
 
@@ -111,7 +127,7 @@ class AdminController extends Controller
                 'company_association' => $validated['companyAssociation']
             ]);
         }
-    
+
         return redirect('/admin')->with('success', 'Product updated successfully!');
     }
 
@@ -126,10 +142,10 @@ class AdminController extends Controller
     public function storeProduct(Request $request)
     {
 
-        if (! Gate::allows('add-product')) {
+        if (!Gate::allows('add-product')) {
             redirect('/admin');
         }
-        
+
         $request->validate([
             'productName' => 'required|string|max:255',
             'productDescription' => 'required|string',
@@ -140,7 +156,7 @@ class AdminController extends Controller
             'companyAssociation' => 'required'
         ]);
 
-        
+
         // Store product in database (if using a database)
         Product::create([
             'name' => $request->productName,
@@ -159,4 +175,3 @@ class AdminController extends Controller
 
 }
 
-    

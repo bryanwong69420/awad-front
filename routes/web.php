@@ -49,6 +49,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin', [AdminController::class, 'showDashboard'])->name('admin');
     Route::get('/adminFeedback', [AdminController::class, 'feedbackList'])->name('adminFeedback');
     Route::get('/adminFeedbackView', [AdminController::class, 'viewFeedback'])->name('adminFeedbackView');
+    Route::delete('/adminFeedbackDelete/{id}', [AdminController::class, 'deleteFeedback'])->name('admin.feedback.delete');
     Route::post('/admin-delete-product', [AdminController::class, 'deleteSelectedProduct'])->name('adminDeleteSelectedProduct');
     Route::post('/admin-update-product', [AdminController:: class, 'updateSelectedProduct'])->name('adminUpdateSelectedProduct');
     Route::post('/adminAddProduct/submit', [AdminController::class, 'storeProduct'])->name('adminStoreProduct');
@@ -59,7 +60,7 @@ Route::middleware(['admin'])->group(function(){
 /*Cart Page*/
 Route::middleware(['inSession'])->group(function(){
     Route::get('/cart', [CartController::class, 'showCartPage'])->name('showCartPage');
-    Route::get('/add-item-to-cart-session', [CartController::class, 'addItemToCartSession'])->name('addItemToCartSession');
+    Route::post('/add-item-to-cart-session', [CartController::class, 'addItemToCartSession'])->name('addItemToCartSession');
     Route::get('/remove-item-from-cart-session', [CartController::class, 'removeItemFromCartSession'])->name('removeItemFromCartSession');
     Route::get('/update-item-quantity', [CartController::class, 'updateCartItemQuantity'])->name('updateCartItemQuantity');
     Route::post('buy-items-from-cart', [CartController::class, 'buyItemsfromCart'])->name('buyItemsFromCart');
