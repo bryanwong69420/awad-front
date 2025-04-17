@@ -59,7 +59,7 @@ class AdminController extends Controller
         }
 
         return redirect()->route('adminFeedback')->with('error', 'Feedback not found.');
-    }
+    } 
 
     public function showSelectedProducts(Request $request)
     {
