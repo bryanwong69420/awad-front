@@ -63,7 +63,7 @@ Route::middleware(['inSession'])->group(function(){
     Route::post('/add-item-to-cart-session', [CartController::class, 'addItemToCartSession'])->name('addItemToCartSession');
     Route::get('/remove-item-from-cart-session', [CartController::class, 'removeItemFromCartSession'])->name('removeItemFromCartSession');
     Route::get('/update-item-quantity', [CartController::class, 'updateCartItemQuantity'])->name('updateCartItemQuantity');
-    
+    Route::post('buy-items-from-cart', [CartController::class, 'buyItemsfromCart'])->name('buyItemsFromCart');
     // Add these to your routes file for testing
     /*
     // Test route for updating item quantity
@@ -158,10 +158,10 @@ Route::middleware(['inSession'])->group(function(){
         
         return redirect()->route('showCartPage')->with('success', 'Test products added to cart');
     });
-
+    */
     Route::get('/test-real-cart', function() {
         // Simulate adding products
-        $product_id = 2;
+        $product_id = 5;
         $product = Product::find($product_id);
         
         if (!$product) {
@@ -191,5 +191,4 @@ Route::middleware(['inSession'])->group(function(){
         return redirect()->route('showCartPage')->with('success', 'Test products added to cart');
 
     });
-    */
 });

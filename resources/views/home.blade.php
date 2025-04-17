@@ -396,25 +396,58 @@
             transform: scale(1.1);
         }
     </style>
-</head>
+    </head>
+    <body>
+        @include('navigation')
+        @if(session('purchase_success'))
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('purchase_success') }}",
+                        icon: 'success',
+                        confirmButtonText: 'Continue Shopping'
+                    });
+                });
+            </script>
+        @endif
+        <section id="home">
+    <div class="container card">
+        <h5 class="mt-3">NEW ARRIVAL</h5>
+        <h1 style="justify-content: center;"><span> Best Price</span> This Year</h1>
+        <a href="/shopping"><button class="transform">Shop now</button></a> <!-- the link can change-->
+    </div>
+</section>
+<section id="brand" class="container">
+    <div class="logo-container">
+        <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/lg.png" alt="">
+        <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/haier.png" alt="">
+        <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/midea.png" alt="">
+        <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/sony.png" alt="">
+        <img class="img-fluid col-lg-2 col-md-4 col-6 logo-huawei" src="/pic/brand/huawei.png" alt="">
+        <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/bosch.png" alt="">
+    </div>
+</section>
 
-<body>
-    @include('navigation')
-    <section id="home">
-        <div class="container card">
-            <h5 class="mt-3">NEW ARRIVAL</h5>
-            <h1 style="justify-content: center;"><span> Best Price</span> This Year</h1>
-            <a href="/product"><button class="transform">Shop now</button></a> <!-- the link can change-->
-        </div>
-    </section>
-    <section id="brand" class="container">
-        <div class="logo-container">
-            <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/lg.png" alt="">
-            <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/haier.png" alt="">
-            <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/midea.png" alt="">
-            <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/sony.png" alt="">
-            <img class="img-fluid col-lg-2 col-md-4 col-6 logo-huawei" src="/pic/brand/huawei.png" alt="">
-            <img class="img-fluid col-lg-2 col-md-4 col-6" src="/pic/brand/bosch.png" alt="">
+<section id="newrelease" class="my-5 py-5">
+    <div class="container text-center mt-5 py-5">
+        <h3>New Release</h3>
+        <hr class="mx-auto">
+        <p>Here you can check out some of the new release products</p>
+    </div>
+    <div class="row mx-auto container-fluid">
+        @foreach($newReleaseProducts as $product)
+        <div class="product text-center col-lg-3 col-md-4 col-12">
+            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
+            <div class="star">
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fa-solid fa-star"></i>
+                @endfor
+            </div>
+            <h5 class="p-name">{{ $product->name }}</h5>
+            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
+            <button class="buy-btn">Buy Now</button>
         </div>
     </section>
 
