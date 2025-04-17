@@ -430,26 +430,6 @@
     </div>
 </section>
 
-<section id="newrelease" class="my-5 py-5">
-    <div class="container text-center mt-5 py-5">
-        <h3>New Release</h3>
-        <hr class="mx-auto">
-        <p>Here you can check out some of the new release products</p>
-    </div>
-    <div class="row mx-auto container-fluid">
-        @foreach($newReleaseProducts as $product)
-        <div class="product text-center col-lg-3 col-md-4 col-12">
-            <img class="img-fluid mb-3" src="{{ $product->image_url }}" alt="{{ $product->name }}">
-            <div class="star">
-                @for($i = 0; $i < 5; $i++)
-                    <i class="fa-solid fa-star"></i>
-                @endfor
-            </div>
-            <h5 class="p-name">{{ $product->name }}</h5>
-            <h4 class="p-name">${{ number_format($product->price, 2) }}</h4>
-            <button class="buy-btn">Buy Now</button>
-        </div>
-    </section>
 
     <section id="newrelease" class="my-5 py-5">
         <div class="container text-center mt-5 py-5">
