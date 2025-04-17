@@ -458,7 +458,7 @@
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a href="/newrelease" class="see-more-btn">
+            <a href="/product" class="see-more-btn">
                 Show More <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -546,7 +546,7 @@
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a href="/newrelease" class="see-more-btn">
+            <a href="/product" class="see-more-btn">
                 Show More <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
@@ -589,9 +589,9 @@
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a href="/kitchen" class="see-more-btn">
-                Show More <i class="fa-solid fa-arrow-right"></i>
-            </a>
+        <a href="{{ route('products.byType', ['type' => 'KitchenAppliances']) }}" class="see-more-btn">
+    Show More <i class="fa-solid fa-arrow-right"></i>
+</a>
         </div>
     </section>
 
@@ -622,9 +622,9 @@
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a href="/mobile" class="see-more-btn">
-                Show More <i class="fa-solid fa-arrow-right"></i>
-            </a>
+        <a href="{{ route('products.byType', ['type' => 'BestMobile']) }}" class="see-more-btn">
+    Show More <i class="fa-solid fa-arrow-right"></i>
+</a>
         </div>
     </section>
 
@@ -655,9 +655,9 @@
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a href="/digital" class="see-more-btn">
-                Show More <i class="fa-solid fa-arrow-right"></i>
-            </a>
+        <a href="{{ route('products.byType', ['type' => 'DigitalGadget']) }}" class="see-more-btn">
+    Show More <i class="fa-solid fa-arrow-right"></i>
+</a>
         </div>
     </section>
 
