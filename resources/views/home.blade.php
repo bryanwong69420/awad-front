@@ -416,7 +416,7 @@
     <div class="container card">
         <h5 class="mt-3">NEW ARRIVAL</h5>
         <h1 style="justify-content: center;"><span> Best Price</span> This Year</h1>
-        <a href="/shopping"><button class="transform">Shop now</button></a> <!-- the link can change-->
+        <a href="/product"><button class="transform">Shop now</button></a> <!-- the link can change-->
     </div>
 </section>
 <section id="brand" class="container">
