@@ -83,7 +83,7 @@ class AdminController extends Controller
 
     public function deleteSelectedProduct(Request $request)
     {
-        ;
+        
 
         if (!Gate::allows('delete-product')) {
             redirect('/admin');

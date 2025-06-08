@@ -29,8 +29,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 /*Product*/
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/brand/{company}', [ProductController::class, 'filterByCompany'])->name('products.byCompany');
-Route::get('/product/type/{type}', [ProductController::class, 'filterByType'])->name('products.byType');
-
 
 
 /*Register*/
